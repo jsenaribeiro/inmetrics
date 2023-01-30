@@ -1,0 +1,23 @@
+version: "3.8"
+
+networks: { net: { driver: bridge } }
+
+volumes:
+  desafio_db: 
+  desafio_mq:
+
+services:
+  backend:
+    extends:
+      file: docker-compose.ms.yml
+      service: webapi
+
+  database:
+    extends:
+      file: docker-compose.db.yml
+      service: Sqlite
+      
+  messenger: 
+    extends:
+      file: docker-compose.mq.yml
+      service: mq?

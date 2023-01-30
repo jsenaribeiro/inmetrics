@@ -1,0 +1,18 @@
+// {type:class}
+// {direction:topDown}
+// {generate:true}
+
+[CaixaDiarioRequest|data]
+[LancamentoRequest|valor]
+[<<aggregate>>Caixa|data]
+[<<entity>>Lancamento|valor; dataHora]
+[ICaixaRepository]
+
+[Caixa]++-*>[Lancamento]
+
+[CaixaDiarioRequest]-.->[CaixaHandler]
+[LancamentoRequest]-.->[CaixaHandler]
+[CaixaHandler]-.->[ICaixaRepository]
+[Caixa]<-.-[ICaixaRepository]
+
+[note: Valor positivo como credito e\n valor negativo como débito {bg:cornsilk}]-[Lancamento]

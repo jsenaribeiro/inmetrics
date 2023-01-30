@@ -1,0 +1,75 @@
+warn: Microsoft.EntityFrameworkCore.Model.Validation[10400]
+      Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (44ms) [Parameters=[@p0='2023-01-20T00:00:00.0000000', @p1='False', @p2='False', @p3='task' (Nullable = false) (Size = 99), @p4='test@email.com' (Nullable = false) (Size = 99)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [Todos] ([date], [done], [x], [task], [user])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__entity_Id_0='624e09ab-a7ae-48b8-aa2b-b9be2fb15d25'], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Accounts] AS [a]
+              WHERE [a].[Id] = @__entity_Id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='624e09ab-a7ae-48b8-aa2b-b9be2fb15d25', @p1='test@email.com' (Nullable = false) (Size = 99), @p2='False', @p3='Test' (Nullable = false) (Size = 99), @p4='123' (Nullable = false) (Size = 99), @p5='admin' (Nullable = false) (Size = 99), @p6='15b66770-9f2c-4cab-8730-9b300558daeb', @p7='1', @p8='2023-01-20T18:54:39.3010932Z', @p9='False', @p10='test@email.com' (Nullable = false) (Size = 99)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Accounts] ([Id], [email], [x], [name], [password], [role])
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+      INSERT INTO [Audits] ([Id], [crud], [dateTime], [x], [user])
+      VALUES (@p6, @p7, @p8, @p9, @p10);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__Email_0='test@email.com' (Size = 99)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Accounts] AS [a]
+              WHERE [a].[email] = @__Email_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[@__request_Email_0='test@email.com' (Size = 99)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[date], [t].[done], [t].[x], [t].[task], [t].[user]
+      FROM [Todos] AS [t]
+      WHERE [t].[x] = CAST(0 AS bit) AND [t].[user] = @__request_Email_0
+
+
+Debug Trace:
+Microsoft.EntityFrameworkCore.Model.Validation: Warning: Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (44ms) [Parameters=[@p0='2023-01-20T00:00:00.0000000', @p1='False', @p2='False', @p3='task' (Nullable = false) (Size = 99), @p4='test@email.com' (Nullable = false) (Size = 99)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Todos] ([date], [done], [x], [task], [user])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (3ms) [Parameters=[@__entity_Id_0='624e09ab-a7ae-48b8-aa2b-b9be2fb15d25'], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Accounts] AS [a]
+        WHERE [a].[Id] = @__entity_Id_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (2ms) [Parameters=[@p0='624e09ab-a7ae-48b8-aa2b-b9be2fb15d25', @p1='test@email.com' (Nullable = false) (Size = 99), @p2='False', @p3='Test' (Nullable = false) (Size = 99), @p4='123' (Nullable = false) (Size = 99), @p5='admin' (Nullable = false) (Size = 99), @p6='15b66770-9f2c-4cab-8730-9b300558daeb', @p7='1', @p8='2023-01-20T18:54:39.3010932Z', @p9='False', @p10='test@email.com' (Nullable = false) (Size = 99)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Accounts] ([Id], [email], [x], [name], [password], [role])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+INSERT INTO [Audits] ([Id], [crud], [dateTime], [x], [user])
+VALUES (@p6, @p7, @p8, @p9, @p10);
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (2ms) [Parameters=[@__Email_0='test@email.com' (Size = 99)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Accounts] AS [a]
+        WHERE [a].[email] = @__Email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (11ms) [Parameters=[@__request_Email_0='test@email.com' (Size = 99)], CommandType='Text', CommandTimeout='30']
+SELECT [t].[Id], [t].[date], [t].[done], [t].[x], [t].[task], [t].[user]
+FROM [Todos] AS [t]
+WHERE [t].[x] = CAST(0 AS bit) AND [t].[user] = @__request_Email_0

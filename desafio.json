@@ -1,0 +1,22 @@
+{
+   "version": "1.0",
+   "command": "webapi-c#",
+   "summary": "DDD MSA RESTful with CQRS and EDA",
+   "require": [
+		".sln"
+   ],
+   "renamed": [
+		 "Dockerfile",
+		"*.csproj",
+		"*.sln",
+		"*.cs",
+		"*.md"   
+   ],
+   "ignored": [
+		".vs",
+		".vscode",
+		".git",
+		"obj",
+		"bin"
+   ]
+}

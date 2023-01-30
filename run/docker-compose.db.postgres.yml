@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=P4ssw0rd
+      - POSTGRES_DB=desafio
+    volumes: [desafio_postgres:/var/lib/postgresql/data/]
+    ports: [5432:5432]
+    restart: always
+    networks: [net]
+      
+volumes: { desafio_postgres: }
+
+networks: { net: { driver: bridge } }

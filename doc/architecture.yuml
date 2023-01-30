@@ -1,0 +1,39 @@
+[IRequest{bg:white}]
+[<<abstract>>IResponse|ok: boolean; {bg:white}]
+[IRequest{bg:white}]
+[IRequest{bg:white}]
+[<<enum>>Status|OK = 200; Created = 201; BadRequest = 400; NotFound = 404; Error = 500]
+[<<abstract>>Validate(T)|validateAsync(); validateThrowsAsync(){bg:white}]
+[Invalid|field; error; status]
+[<<abstract>>IEvent{bg:white}]
+[<<abstract>>IModel{bg:white}]
+
+[Validate(T)]-*>[Invalid]
+
+[IResponse]^-[IEvent]
+[IResponse]^-[IModel]
+[IResponse]code->[Status]
+
+[IRequest]^-[IRequest]
+[IRequest]^-[IRequest]
+
+[IEvent]^-[SuccessEvent]
+[IModel]^-[GenericModel]
+
+[CreateTodoRequest]
+[UpdateTodoRequest]
+[DeleteTodoRequest]
+[SearchTodosRequest]
+[IHandle|sendAsync(request) {bg:white}]
+[TodoHandler]
+
+[IHandle]^-.-[TodoHandler]
+[TodoHandler]-.->[CreateTodoRequest]
+[TodoHandler]-.->[UpdateTodoRequest]
+[TodoHandler]-.->[DeleteTodoRequest]
+[TodoHandler]-.->[SearchTodosRequest]
+
+[IRequest]^-.-[CreateTodoRequest]
+[IRequest]^-.-[UpdateTodoRequest]
+[IRequest]^-.-[DeleteTodoRequest]
+[IRequest]^-.-[SearchTodosRequest]

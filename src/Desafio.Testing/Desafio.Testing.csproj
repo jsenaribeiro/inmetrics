@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+   <PropertyGroup>
+      <TargetFramework>net7.0</TargetFramework>
+      <Nullable>enable</Nullable>
+      <ImplicitUsings>enable</ImplicitUsings>
+   </PropertyGroup>
+
+   <ItemGroup>
+     <Compile Remove="Testings\**" />
+     <EmbeddedResource Remove="Testings\**" />
+     <None Remove="Testings\**" />
+     <SpecFlowFeatureFiles Remove="Testings\**" />
+     <SpecFlowObsoleteCodeBehindFiles Remove="Testings\**" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <ProjectReference Include="..\Desafio.Domain\Desafio.Domain.csproj" />
+      <ProjectReference Include="..\Desafio.Infrastructure\Desafio.Infrastructure.csproj" />
+      <ProjectReference Include="..\Desafio.Application\Desafio.Application.csproj" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <SpecFlowObsoleteCodeBehindFiles Remove="Account.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Account\Signin - Copy.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Account\SignupAccount - Copy.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Infrastructure\CaixaDiario.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Infrastructure\Persistence - Copy.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Todo\CreateTodo - Copy.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Todo\SearchTodos - Copy.feature.cs" />
+      <SpecFlowObsoleteCodeBehindFiles Remove="Todo\Signin.feature.cs" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+      <PackageReference Include="NSubstitute" Version="4.4.0" />
+      <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
+      <PackageReference Include="SpecFlow.MsTest" Version="3.9.40" />
+      <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
+      <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
+      <PackageReference Include="FluentAssertions" Version="6.2.0" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <Compile Update="Account\Signout.feature.cs">
+        <DependentUpon>SignOut.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Account\Signin.feature.cs">
+        <DependentUpon>SignIn.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Account\Signup.feature.cs">
+         <DependentUpon>Signup.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Infrastructure\Messenger.feature.cs">
+        <DependentUpon>Messenger.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Infrastructure\Persistence.feature.cs">
+        <DependentUpon>Persistence.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Todo\UpdateTodo.feature.cs">
+        <DependentUpon>UpdateTodo.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Todo\DeleteTodo.feature.cs">
+        <DependentUpon>DeleteTodo.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Todo\CreateTodo.feature.cs">
+        <DependentUpon>CreateTodo.feature</DependentUpon>
+      </Compile>
+      <Compile Update="Todo\SearchTodos.feature.cs">
+        <DependentUpon>SearchTodos.feature</DependentUpon>
+      </Compile>
+   </ItemGroup>
+
+   <ItemGroup>
+      <SpecFlowFeatureFiles Update="Account\SignOut.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Account\SignIn.feature">
+         <Visible>$(UsingMicrosoftNETSdk)</Visible>
+         <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Account\SignUp.feature">
+         <Visible>$(UsingMicrosoftNETSdk)</Visible>
+         <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Infrastructure\Messenger.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Infrastructure\Persistence.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Todo\UpdateTodo.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Todo\DeleteTodo.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Todo\CreateTodo.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+      <SpecFlowFeatureFiles Update="Todo\SearchTodos.feature">
+        <Visible>$(UsingMicrosoftNETSdk)</Visible>
+        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+      </SpecFlowFeatureFiles>
+   </ItemGroup>
+
+</Project>

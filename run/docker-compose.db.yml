@@ -1,0 +1,31 @@
+version: "3.8"
+  
+services:
+  mysql:
+    extends:
+      file: docker-compose.db.mysql.yml
+      service: mysql
+      
+  sqlserver: 
+    extends:
+      file: docker-compose.db.sqlserver.yml
+      service: sqlserver
+      
+  postgres: 
+    extends:
+      file: docker-compose.db.postgres.yml
+      service: postgres
+
+  oracle:
+    extends:
+      file: docker-compose.db.oracle.yml
+      service: oracle
+            
+  mongodb: 
+    extends:
+      file: docker-compose.db.mongodb.yml
+      service: mongodb 
+    
+volumes: { desafio: }
+  
+networks: { net: { driver: bridge } }
