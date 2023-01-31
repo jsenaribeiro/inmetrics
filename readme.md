@@ -22,11 +22,11 @@ Nesta seção contém as orientações para os processos de implantação e exec
 * Visual Studio Community
 * Visual Studio Specflow Extension
 
-#### Implantação
+### Implantação
 
 A instalação do Docker já vem acompanhada das versões do Windows 10+ através do Docker Desktop e o WSL2 (Windows Subsystem for Linux).  O .NET SDK pode baixado e instalado através do side oficial da microsoft em [.NET SDK](https://dotnet.microsoft.com/en-us/download). Enquanto o Visual Studio pode ser instalado com a versão gratuíta Community ou ainda ser utilizado com o Visual Code.
 
-#### Execução 
+### Execução 
 
 A pasta **run** contém alguns scripts com os arquivos de configuração de containers Docker . Para executar o serviço REST da aplicação com seu banco de dados o script abaixo.
 
@@ -52,14 +52,14 @@ Nesta seção é apresentado o modelo de domínio e as decisões arquiteturais d
 * Test-Driven Development
 * Clean Code 
 
-#### Modelo
+### Modelo
 
 Como modelo de domínio foi projetada a seguinte solução seguindos a abordagem Domain-Driven Design, conjuntamente dos princípios XP de Simple Design.
 
 
 ![[domain.svg]]
 
-#### Solução
+### Solução
 
 Como solução técnica foi utilizada uma arquitetura em camadas com isolamento do domínio utilizando serviço RESTful com banco de dados conteinerizados. O projeto visou reduzir as dependências externas sem comprometer a qualidade técnica da solução. Segue um resumo dos pacotes, padrões e abordagens utilizados:
 
