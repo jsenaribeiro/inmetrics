@@ -57,7 +57,7 @@ Nesta seção é apresentado o modelo de domínio e as decisões arquiteturais d
 Como modelo de domínio foi projetada a seguinte solução seguindos a abordagem Domain-Driven Design, conjuntamente dos princípios XP de Simple Design.
 
 
-![[domain.svg]]
+![[../doc/domain.svg]]
 
 ### Solução
 
