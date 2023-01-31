@@ -1,12 +1,14 @@
 # Desafio Inmetrics
 
-Esse projeto faz parte do desafio de recrutamento da inmetrics. 
+Esse documento faz parte de um projeto que é parte do processo de seleção da inmetrics contendo os seguintes tópicos:
+
+* **Produto**: contém a proposta com os seus requisitos
+* **Processo**:  os passos para sua implantação e execução
+* **Projeto**: contém detalhes da arquitetura de sofware
 
 ## 1. Produto
 
-Desafio consiste em uma solução de controle de fluxo de caixa com lançamentos (débito e crédito) e com relatório com o saldo do caixa consolidado diário.
-
-### Requisitos
+Desafio consiste em uma solução de controle de fluxo de caixa com lançamentos (débito e crédito) e com relatório com o saldo do caixa consolidado diário com os seguintes requisitos:
 
 * Serviço com lançamentos
 * Serviço de consolidado diário
@@ -20,11 +22,11 @@ Nesta seção contém as orientações para os processos de implantação e exec
 * Visual Studio Community
 * Visual Studio Specflow Extension
 
-### 2.1 Implantação
+#### Implantação
 
 A instalação do Docker já vem acompanhada das versões do Windows 10+ através do Docker Desktop e o WSL2 (Windows Subsystem for Linux).  O .NET SDK pode baixado e instalado através do side oficial da microsoft em [.NET SDK](https://dotnet.microsoft.com/en-us/download). Enquanto o Visual Studio pode ser instalado com a versão gratuíta Community ou ainda ser utilizado com o Visual Code.
 
-### 2.2 Execução 
+#### Execução 
 
 A pasta **run** contém alguns scripts com os arquivos de configuração de containers Docker . Para executar o serviço REST da aplicação com seu banco de dados o script abaixo.
 
@@ -41,24 +43,23 @@ run\test.bat # executa o dotnet test com uma melhor formatação visual
 
 ## 3. Projeto
 
-Nesta seção é apresentado o modelo de domínio e as decisões arquiteturais do projeto. O projeto é um software de serviço utilizando a plataforma do .NET 7.0+ na linguagem C#
+Nesta seção é apresentado o modelo de domínio e as decisões arquiteturais do projeto. O projeto é um software de serviço utilizando a plataforma do .NET 7.0+ na linguagem C#.
 
-### 3.1 Modelo
+* DKY (DRY, KISS, YAGNI)
+* SOLID (SRP, OCP, LKV, ISP, DIP)
+* High Coehsion x Low Coupling
+* Domain-Driven Design
+* Test-Driven Development
+* Clean Code 
+
+#### Modelo
 
 Como modelo de domínio foi projetada a seguinte solução seguindos a abordagem Domain-Driven Design, conjuntamente dos princípios XP de Simple Design.
 
 
 ![[domain.svg]]
 
-
-### Princípios
-
-* DKY (DRY, KISS, YAGNI)
-* SOLID (SRP, OCP, LKV, ISP, DIP)
-* High Coehsion x Low Coupling
-* Clean Code 
-
-### Arquitetura
+#### Solução
 
 Como solução técnica foi utilizada uma arquitetura em camadas com isolamento do domínio utilizando serviço RESTful com banco de dados conteinerizados. O projeto visou reduzir as dependências externas sem comprometer a qualidade técnica da solução. Segue um resumo dos pacotes, padrões e abordagens utilizados:
 
