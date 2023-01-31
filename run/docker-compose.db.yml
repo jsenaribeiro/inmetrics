@@ -1,31 +1,27 @@
 version: "3.8"
   
-services:
-  mysql:
-    extends:
-      file: docker-compose.db.mysql.yml
-      service: mysql
-      
+services:      
   sqlserver: 
-    extends:
-      file: docker-compose.db.sqlserver.yml
-      service: sqlserver
-      
-  postgres: 
-    extends:
-      file: docker-compose.db.postgres.yml
-      service: postgres
-
-  oracle:
-    extends:
-      file: docker-compose.db.oracle.yml
-      service: oracle
+    user: root
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+    volumes: [desafio_db:/var/opt/mssql/data]
+    ports: [1433:1433]
+    networks: [default]
+    environment:
+      MSSQL_USER: "SA"
+      MSSQL_DATABASE: "desafio"
+      MSSQL_DATABASE_COLLATE: "SQL_Latin1_General_CP1_CI_AI"
+      MSSQL_PASSWORD: "P4ssw0rd"
+      SA_PASSWORD: "P4ssw0rd"
+      ACCEPT_EULA: "Y"
             
   mongodb: 
-    extends:
-      file: docker-compose.db.mongodb.yml
-      service: mongodb 
+    image: mongo
+    container_name: mongodb
+    ports: [27017:27017]
+    volumes: [desafio_db:/data/db]   
     
-volumes: { desafio: }
+volumes: { desafio_db: }
   
-networks: { net: { driver: bridge } }
+networks: { default: { driver: bridge } }

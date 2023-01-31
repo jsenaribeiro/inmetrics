@@ -2,6 +2,15 @@ version: "3.8"
   
 services:
   webapi: 
-    extends:
-      file: docker-compose.ms.webapi.yml
-      service: webapi
+    networks: [default]
+    image: desafio-webapi:latest
+    container_name: webapi
+    ports: ["5000:5000", "5001:5001"]
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_HTTPS_PORT=http://+:5001
+      - JWT_SECRET_KEY=123
+      - DATABASE=sqlserver
+
+networks: { default: { driver: bridge } }

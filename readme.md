@@ -2,48 +2,7 @@
 
 Esse projeto faz parte do desafio de recrutamento da inmetrics. 
 
-## Introdução
-
-O projeto desafio é um serviço webapi utilizando protocolo REST para consulta de caixa e lançamentos escrito em C# na plataforma .NET 7.0.  Nesta seção contém as orientações para os prerequisitos, instalação, execução, implantação e testes.
-
-### Prerequisitos
-
-Como pre-requisitos de execução depende
-
-| Artefato | Contexto | Versão |
-|-|-|-|
-| Docker | execução | 20+ |
-| .NET SDK | desenvolvimento | 7.0+ |
-| Visual Studio | desenvolvimento | 2022 |
-
-### Instalação
-
-A instalação do Docker já vem acompanhada das versões do Windows 10+ através do Docker Desktop e o WSL2 (Windows Subsystem for Linux).  O .NET SDK pode baixado e instalado através do side oficial da microsoft em [.NET SDK](https://dotnet.microsoft.com/en-us/download). Enquanto o Visual Studio pode ser instalado com a versão gratuíta Community ou ainda ser utilizado com o Visual Code.
-
-### Execução
-
-A pasta **run** contém alguns scripts e arquivos de conteiners de Docker e Docker Compose. Para executar o sistema basta entrar na pasta e digitar o seguinte comando.
-
-```
-cd src
-docker-compose up
-```
-
-### Implantação
-
-Por utilizar um conteiner docker, depende de um servidor configurado para executar containers Docker, de preferência com ferramentas de integração contínua para automatizar a implantação. Além de serviços de análise estática para garantia de qualidade de código, como o SonarQube.
-
-### Testes
-
-Para executar os testes pode ser executada via linha de comando **dotnet test** na pasta src, via script de atalho em **run/test.bat** ou via Visual Studio com a extensão do SpecFlow.
-
-```prompt
-cd src && dotnet test
-cd run && test.bat
-```
-
-
-## Projeto
+## 1. Produto
 
 Desafio consiste em uma solução de controle de fluxo de caixa com lançamentos (débito e crédito) e com relatório com o saldo do caixa consolidado diário.
 
@@ -52,7 +11,39 @@ Desafio consiste em uma solução de controle de fluxo de caixa com lançamentos
 * Serviço com lançamentos
 * Serviço de consolidado diário
 
-### Modelo
+## 2. Processo
+
+Nesta seção contém as orientações para os processos de implantação e execução do software que depende da instalação dos seguintes componentes para sua execução e desenvolvimento:
+
+* Docker
+* .NET SDK 7.0+
+* Visual Studio Community
+* Visual Studio Specflow Extension
+
+### 2.1 Implantação
+
+A instalação do Docker já vem acompanhada das versões do Windows 10+ através do Docker Desktop e o WSL2 (Windows Subsystem for Linux).  O .NET SDK pode baixado e instalado através do side oficial da microsoft em [.NET SDK](https://dotnet.microsoft.com/en-us/download). Enquanto o Visual Studio pode ser instalado com a versão gratuíta Community ou ainda ser utilizado com o Visual Code.
+
+### 2.2 Execução 
+
+A pasta **run** contém alguns scripts com os arquivos de configuração de containers Docker . Para executar o serviço REST da aplicação com seu banco de dados o script abaixo.
+
+```bash
+run\environment.bat --build # ao executar a primeira vez
+run\environment.bat # com a imagem já criada, apenas executa
+```
+
+Os testes podem ser executados via Visual Studio com a extensão SpecFlow ou via linha de comando com o **dotnet test** na pasta do projeto (**src**). Há também um script de atalho na pasta run que pode ser executado com o comando abaixo.
+
+```bash
+run\test.bat # executa o dotnet test com uma melhor formatação visual
+```
+
+## 3. Projeto
+
+Nesta seção é apresentado o modelo de domínio e as decisões arquiteturais do projeto. O projeto é um software de serviço utilizando a plataforma do .NET 7.0+ na linguagem C#
+
+### 3.1 Modelo
 
 Como modelo de domínio foi projetada a seguinte solução seguindos a abordagem Domain-Driven Design, conjuntamente dos princípios XP de Simple Design.
 
@@ -65,8 +56,9 @@ Como modelo de domínio foi projetada a seguinte solução seguindos a abordagem
 * DKY (DRY, KISS, YAGNI)
 * SOLID (SRP, OCP, LKV, ISP, DIP)
 * High Coehsion x Low Coupling
+* Clean Code 
 
-### Solução
+### Arquitetura
 
 Como solução técnica foi utilizada uma arquitetura em camadas com isolamento do domínio utilizando serviço RESTful com banco de dados conteinerizados. O projeto visou reduzir as dependências externas sem comprometer a qualidade técnica da solução. Segue um resumo dos pacotes, padrões e abordagens utilizados:
 

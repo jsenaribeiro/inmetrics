@@ -1,6 +1,6 @@
 version: "3.8"
 
-networks: { net: { driver: bridge } }
+networks: { default: { driver: bridge } }
 
 volumes:
   desafio_db: 
@@ -15,9 +15,4 @@ services:
   database:
     extends:
       file: docker-compose.db.yml
-      service: Sqlite
-      
-  messenger: 
-    extends:
-      file: docker-compose.mq.yml
-      service: mq?
+      service: sqlserver

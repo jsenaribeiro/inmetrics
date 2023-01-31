@@ -1,5 +1,7 @@
 @echo off
 
+cd /D "%~dp0"
+
 if "%1"=="" (
 	echo "waiting for a database (ex.: ef-reset mysql)"
 	goto :ENDLOOP

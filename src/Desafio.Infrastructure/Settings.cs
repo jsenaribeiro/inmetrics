@@ -20,8 +20,8 @@ public static class Settings
 
     public static string JwtSecretKey
     {
-        get => GetEnvironmentVariable("SECRET_KEY") ?? string.Empty;
-        set => SetEnvironmentVariable("SECRET_KEY", value);
+        get => GetEnvironmentVariable("JWT_SECRET_KEY") ?? string.Empty;
+        set => SetEnvironmentVariable("JWT_SECRET_KEY", value);
     }
 
     public static string ConnectionString => Database.ConnectionString;

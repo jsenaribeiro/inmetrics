@@ -42,12 +42,6 @@ public abstract class Factories
         UseLoginMock("test");
     }
 
-    protected void UseMqService(MqType mq)
-    {
-        if (mq == MqType.Rabbit) app.UseRabbitMQ("test");
-        if (mq == MqType.Kafka) app.UseKafka("test");
-    }
-
     protected Login Createlogin(IUnitOfWork unitOfWork) => Login.Empty;
 
     protected void UseLoginMock(string? username)

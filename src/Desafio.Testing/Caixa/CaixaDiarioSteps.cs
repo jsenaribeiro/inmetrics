@@ -37,7 +37,7 @@ public class CaixaDiarioSteps : AbstractCaixaSteps
         }
 
         var data = string.IsNullOrEmpty(dataString) ? default : DateTime.Parse(dataString);
-        var request = new CaixaDiarioRequest(data);
+        var request = new CaixaDiarioRequest { Data= data }; 
 
         resultado = GetResult<CaixaController>(request);
     }
